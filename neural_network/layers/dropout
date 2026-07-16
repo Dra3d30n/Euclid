@@ -1,0 +1,29 @@
+import numpy as np
+from layers.base import Layer
+
+class Dropout(Layer):
+    name = "Dropout"
+
+    def __init__(self, rate):
+        super().__init__()
+        self.rate = rate
+        self.mask = None
+
+    def forward(self, x, training=True):
+        if not training:
+            return x
+
+        self.mask = (
+            np.random.rand(*x.shape) >= self.rate
+        ) / (1 - self.rate)
+
+        return x * self.mask
+
+    def backward(self, grad):
+        return grad * self.mask
+
+    def parameters(self):
+        return []
+
+    def gradients(self):
+        return []
