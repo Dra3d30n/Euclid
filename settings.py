@@ -1,0 +1,3 @@
+
+log_training_progress=True
+training_progress_iterations_per_print=100

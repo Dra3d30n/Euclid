@@ -1,5 +1,5 @@
 import numpy as np
-from layers.base import Layer
+from .layer import Layer
 
 class Dropout(Layer):
     name = "Dropout"

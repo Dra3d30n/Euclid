@@ -5,7 +5,8 @@ class Model:
         self.network=network
         self.learning=learning
 
-    def train(self,x,y,epoch):
-        self
-
-
+        self.learning.attach_network(self.network)
+    def train(self, *args, **kwargs):
+        return self.learning.train(*args, **kwargs)
+    def predict(self,input):
+        return self.network.forward(input)

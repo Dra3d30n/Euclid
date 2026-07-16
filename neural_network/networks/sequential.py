@@ -1,5 +1,5 @@
 import numpy as np
-from neural_network.network import Network
+from neural_network.networks.network import Network
 
 class Sequential(Network):
     def __init__(self, layers):

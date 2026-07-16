@@ -1,5 +1,5 @@
 import numpy as np
-from neural_network.layers.base import Layer
+from neural_network.layers.layer import Layer
 
 class Flatten(Layer):
     name = "Flatten"

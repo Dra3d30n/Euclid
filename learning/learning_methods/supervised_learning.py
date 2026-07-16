@@ -1,4 +1,5 @@
-from learning_methods.base_learning import Learning
+from learning.learning_methods.learning import Learning
+import settings
 
 class SupervisedLearning(Learning):
     name = "Supervised"
@@ -10,11 +11,19 @@ class SupervisedLearning(Learning):
         self.optimizer = optimizer
 
     def train(self, x, y, epochs):
-        for _ in range(epochs):
+        for epoch in range(epochs):
             prediction = self.network.forward(x)
 
             loss = self.loss.forward(prediction, y)
-            grad = self.loss.backward()
+
+            if settings.log_training_progress and epoch%settings.training_progress_iterations_per_print==0:
+                print(
+                    "Epoch " + str(epoch) +
+                    " out of " + str(epochs) +
+                    ", Loss: " + str(loss)
+                )
+
+            grad = self.loss.backward(prediction, y)
 
             self.network.backward(grad)
 
